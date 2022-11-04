@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a1-deploy
+  labels:
+    app: a1-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: a1-deploy
+  template:
+    metadata:
+      labels:
+        app: a1-deploy
+    spec:
+      containers:
+        - name: a1-deploy
+          image: itssodium/node-app:v1
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: 40m
+              memory: 100Mi
